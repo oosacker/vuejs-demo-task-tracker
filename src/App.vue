@@ -1,7 +1,7 @@
 <template>
   <div class='container'>  
     <Header title='My Tasks' />
-    <Tasks :tasks='tasks' />
+    <Tasks @toggle-reminder="toggleReminder" @delete-task="deleteTask" :tasks='tasks' />
   </div>
 </template>
 
@@ -20,6 +20,30 @@ export default {
       tasks: [],
     }
   },
+  methods: {
+    toggleReminder(id) {
+      if(!confirm('Change state?'))
+        return
+
+      this.tasks = this.tasks.map((task) => 
+        task.id === id ? {...task, reminder: !task.reminder}: task
+      )
+
+    },
+    deleteTask(id) {
+      //console.log(id)
+
+      if(!confirm('OK to delete?'))
+        return
+
+      // return a new array with requested task id removed
+      this.tasks = this.tasks.filter((task) => {
+        // loops through all items in this.tasks '(task) =>' is individual array element to check
+        console.log(`deleting task id:${id}; checking existing task id: ${task.id}`)
+        return task.id !== id
+      })
+    }
+  },
   created() {
     this.tasks = [
       {
@@ -32,7 +56,7 @@ export default {
         id: 2,
         text: 'Meeting at school',
         date: 'March 3 1:30PM',
-        reminder: true,
+        reminder: false,
       },
       {
         id: 3,
