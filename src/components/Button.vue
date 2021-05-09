@@ -1,8 +1,9 @@
 <template>
     <button 
         :style="{ background: color }" 
-        @click="clickHandler()" 
-        class="btn">{{ text }} >
+        @click="clickHandler" 
+        class="btn">
+        {{ text }}
     </button>
 </template>
 
@@ -15,7 +16,8 @@
         },
         methods: {
             clickHandler() {
-                console.log('clicked')
+                console.log('clicked add task button')
+                this.$emit('toggle-add-task')
             }
         }
     }

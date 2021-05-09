@@ -1,8 +1,19 @@
 <template>
   <div class='container'>  
-    <Header title='My Tasks' />
-    <AddTask @add-task="addTask" />
-    <Tasks @toggle-reminder="toggleReminder" @delete-task="deleteTask" :tasks='tasks' />
+    <Header 
+      title='My Tasks' 
+      @toggle-add-task="toggleAddTask"
+    />
+
+    <div v-show="showAddTask">
+      <AddTask @add-task="addTask" />
+    </div>
+    
+    <Tasks 
+      @toggle-reminder="toggleReminder" 
+      @delete-task="deleteTask" 
+      :tasks='tasks' 
+    />
   </div>
 </template>
 
@@ -21,6 +32,7 @@ export default {
   data() {
     return {
       tasks: [],
+      showAddTask: false,
     }
   },
   methods: {
@@ -57,6 +69,9 @@ export default {
     },
     addTask(newTask) {
       this.tasks = [...this.tasks, newTask]
+    },
+    toggleAddTask() {
+      this.showAddTask = !this.showAddTask
     }
   },
   created() {
