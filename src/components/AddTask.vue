@@ -44,8 +44,8 @@
         name: 'AddTask',
         data() {
             return {
-                text: 'aa',
-                date: '213',
+                text: '',
+                date: '',
                 reminder: false
             }
         },
