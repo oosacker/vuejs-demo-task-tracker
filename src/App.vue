@@ -1,6 +1,7 @@
 <template>
   <div class='container'>  
     <Header title='My Tasks' />
+    <AddTask @add-task="addTask" />
     <Tasks @toggle-reminder="toggleReminder" @delete-task="deleteTask" :tasks='tasks' />
   </div>
 </template>
@@ -8,12 +9,14 @@
 <script>
 import Header from './components/Header'
 import Tasks from './components/Tasks'
+import AddTask from './components/AddTask'
 
 export default {
   name: 'App',
   components: {
     Header,
-    Tasks
+    Tasks,
+    AddTask
   },
   data() {
     return {
@@ -25,9 +28,18 @@ export default {
       if(!confirm('Change state?'))
         return
 
-      this.tasks = this.tasks.map((task) => 
-        task.id === id ? {...task, reminder: !task.reminder}: task
-      )
+      
+
+      this.tasks = this.tasks.map((task) => { 
+
+        // this makes each array element to a new object with properties
+        // {...task} 
+
+        // you can update or add a new property to the object like this
+        // {...task, reminder: !task.reminder, text: 'sdaadasd', h: 'adas'}
+
+        return task.id === id ? {...task, reminder: !task.reminder} : task 
+      })
 
     },
     deleteTask(id) {
@@ -42,6 +54,9 @@ export default {
         console.log(`deleting task id:${id}; checking existing task id: ${task.id}`)
         return task.id !== id
       })
+    },
+    addTask(newTask) {
+      this.tasks = [...this.tasks, newTask]
     }
   },
   created() {
