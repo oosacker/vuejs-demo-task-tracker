@@ -3,6 +3,7 @@
     <Header 
       title='My Tasks' 
       @toggle-add-task="toggleAddTask"
+      :showAddTask="showAddTask"
     />
 
     <div v-show="showAddTask">
@@ -72,6 +73,7 @@ export default {
     },
     toggleAddTask() {
       this.showAddTask = !this.showAddTask
+      console.log('show add task='+this.showAddTask)
     }
   },
   created() {

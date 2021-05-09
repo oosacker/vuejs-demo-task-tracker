@@ -2,7 +2,7 @@
     <header>
         <h1>{{ title }}</h1>
         <Button 
-            text='Add Task' 
+            :text="showAddTask ? 'Close' : 'Add Task'" 
             color='green' 
             @toggle-add-task="$emit('toggle-add-task')"
         />
@@ -20,8 +20,9 @@
         props: {
             title: {
                 type: String,
-                default: 'HELLOOOOO'
-            }
+                default: 'HELLOOOOO',
+            },
+            showAddTask: Boolean
         },
         methods: {
             
