@@ -26,7 +26,13 @@
             showAddTask: Boolean
         },
         methods: {
-            
+            isHomepage() {
+                if(this.$route.path === '/') {
+                    return true
+                } else {
+                    return false
+                }
+            }
         },
         computed : {
             // use v-show to decide to show button or not depending on path
