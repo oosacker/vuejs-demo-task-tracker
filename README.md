@@ -31,6 +31,9 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
         "vue": "html",
 
 ### Notes
+Use json-server to emulate a proper backend
+https://www.npmjs.com/package/json-server
+
 Install 
 npm i serve -g 
 

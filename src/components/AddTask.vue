@@ -59,7 +59,7 @@
                 }
 
                 const newTask = {
-                    id: Math.floor(Math.random() * 100000),
+                    //id: Math.floor(Math.random() * 100000),
                     text: this.text,
                     date: this.date,
                     reminder: this.reminder
