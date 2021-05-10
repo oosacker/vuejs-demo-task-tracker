@@ -29,3 +29,10 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
         "javascript": "javascriptreact",
         "vue-html": "html",
         "vue": "html",
+
+### Notes
+Install 
+npm i serve -g 
+
+server for dist
+serve -s dist 

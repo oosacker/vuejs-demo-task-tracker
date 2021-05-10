@@ -56,7 +56,6 @@ export default {
 
         return task.id === id ? {...task, reminder: !task.reminder} : task 
       })
-
     },
     deleteTask(id) {
       //console.log(id)
@@ -73,35 +72,62 @@ export default {
       console.log(this.tasks)
 
     },
-    addTask(newTask) {
-      this.tasks = [...this.tasks, newTask]
+    async addTask(newTask) {
+      
+      console.log(`new task:  ${JSON.stringify(newTask)}`)
+
+      const res = await fetch('api/tasks', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newTask),
+      })
+
+      const data = await res.json()
+      console.log(`return data: ${JSON.stringify(data)}`)
+
+      this.tasks = [...this.tasks, data]
+
+      //this.tasks = [...this.tasks, newTask]
     },
     toggleAddTask() {
       this.showAddTask = !this.showAddTask
       console.log('show add task='+this.showAddTask)
+    },
+    async fetchTasks() {
+      let res = await fetch('api/tasks')  // see vue.config.js for dev api path -- proxy changes the api address and port
+      // let res = await fetch('http://localhost:5000/tasks')  
+      let data = res.json()
+      return data;
     }
   },
-  created() {
-    this.tasks = [
-      {
-        id: 1,
-        text: 'Doctor',
-        date: 'March 1 5:30PM',
-        reminder: true,
-      },
-      {
-        id: 2,
-        text: 'Meeting at school',
-        date: 'March 3 1:30PM',
-        reminder: false,
-      },
-      {
-        id: 3,
-        text: 'Shopping',
-        date: 'March 3 4:30PM',
-        reminder: true,
-      },
-    ]
+  async created() {
+    let mytasks = await this.fetchTasks()
+    console.log(mytasks)
+    this.tasks = mytasks
+    //console.log(this.fetchTasks())
+    // [
+    //   { 
+    //     id: 1,
+    //     text: 'Doctor',
+    //     date: 'March 1 5:30PM',
+    //     reminder: true,
+    //   },
+    //   {
+    //     id: 2,
+    //     text: 'Meeting at school',
+    //     date: 'March 3 1:30PM',
+    //     reminder: false,
+    //   },
+    //   {
+    //     id: 3,
+    //     text: 'Shopping',
+    //     date: 'March 3 4:30PM',
+    //     reminder: true,
+    //   },
+    // ]
   }
 }
 </script>
