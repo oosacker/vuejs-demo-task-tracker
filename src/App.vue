@@ -1,52 +1,48 @@
 <template>
-  <div class='container'>  
-    <Header 
-      title='My Tasks' 
+  <div class="container">
+    <Header
+      title="My Tasks"
       @toggle-add-task="toggleAddTask"
       :showAddTask="showAddTask"
     />
-    <router-view 
-      :showAddTask="showAddTask"
-    >
-    </router-view>
+    <router-view :showAddTask="showAddTask"></router-view>
     <Footer />
   </div>
 </template>
 
 <script>
-import Header from './components/Header'
-import Footer from './components/Footer'
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     Header,
-    Footer
+    Footer,
   },
   data() {
     return {
       showAddTask: false,
-    }
+    };
   },
   methods: {
     toggleAddTask() {
-      this.showAddTask = !this.showAddTask
-      console.log('show add task='+this.showAddTask)
+      this.showAddTask = !this.showAddTask;
+      console.log("show add task=" + this.showAddTask);
     },
-
-  }
-}
+  },
+};
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap");
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 .container {
   max-width: 500px;
