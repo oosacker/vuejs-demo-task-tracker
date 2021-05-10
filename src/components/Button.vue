@@ -17,7 +17,7 @@
         methods: {
             clickHandler() {
                 console.log('clicked add task button')
-                this.$emit('toggle-add-task')
+                this.$emit('btn-click')
             }
         }
     }

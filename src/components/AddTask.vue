@@ -54,7 +54,7 @@
                 e.preventDefault()
 
                 if(!this.text) {
-                    alert('Enter some data first')
+                    alert('Please fill in the form')
                     return
                 }
 

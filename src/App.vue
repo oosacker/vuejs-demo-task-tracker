@@ -38,10 +38,13 @@ export default {
   },
   methods: {
     toggleReminder(id) {
-      if(!confirm('Change state?'))
-        return
 
-      
+      const result = this.tasks.filter( task => task.id === id )
+
+      let reminder = (result[0].reminder) // result is a Proxy object
+
+      if(!confirm(`Change reminder from ${reminder} to ${!reminder}?`))
+        return
 
       this.tasks = this.tasks.map((task) => { 
 
@@ -67,6 +70,8 @@ export default {
         console.log(`deleting task id:${id}; checking existing task id: ${task.id}`)
         return task.id !== id
       })
+      console.log(this.tasks)
+
     },
     addTask(newTask) {
       this.tasks = [...this.tasks, newTask]
